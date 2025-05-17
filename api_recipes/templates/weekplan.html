@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home - Recipe Instructions
+{% endblock %}
+{% block extra_head %}
+<!-- Font & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}" />
+{% endblock %}
+
+{% block content %}
+<main class="planner-wrapper">
+    <section class="weekly-planner">
+        <!-- ▸ ribbon title -->
+        <div class="ribbon-wrapper">
+            <h2 class="rtestibbon">Weekly Planner</h2>
+        </div>
+        <!-- ▸ view toggles -->
+        <div class="view-options">
+            <a href="#" class="active">List&nbsp;view</a>
+            <a href="#">Post-it&nbsp;view</a>
+        </div>
+
+        <!-- ▸ one day (repeat / loop in real app) -->
+        {% for weekplan_key, weekplan_day in weekplan_days.items() %}
+        <article class="day-plan">
+            <h3>{{ weekplan_key }}</h3>
+            <div class="meals">
+                {% for weekplan_entry in weekplan_day %}
+                <div class="meal-card">
+                    {% if weekplan_entry["_id"] %}
+                    <div class="card-content">
+                        <strong>{{ weekplan_entry["meal"] }}</strong> {{ weekplan_entry["recipe_name"] }}<br>
+                        <span class="small">Time: {{ weekplan_entry["recipe_entry"]["preparation_time"] }}</span><br>
+                        <span class="small">Tag: {{ weekplan_entry["recipe_entry"]["tags"] }}</span>
+
+                        <!-- action buttons sit at the end of the flex row -->
+                        <div class="meal-actions">
+                            <button title="Edit" class="edit-toggle" data-target="dropdown-{{ weekplan_entry['_id'] }}"
+                                name="{{ weekplan_entry['_id'] }}">
+                                <i class="fa-solid fa-pen"></i></button>
+                            <!-- Dropdown initially hidden -->
+                            <form method="POST" action="{{ url_for('update_weekplan_entry') }}" style="display: none;"
+                                id="dropdown-{{ weekplan_entry['_id'] }}">
+                                <input type="hidden" name="entry_id" value="{{ weekplan_entry['_id'] }}">
+                                <select name="recipe_id">
+                                    {% for recipe in option_recipes %}
+                                    <option name="{{ weekplan_entry['_id'] }}" value="{{ recipe['_id'] }}">{{
+                                        recipe['name'] }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit">✔</button>
+                                <input type="hidden" name="weekplan_entry" value="{{ weekplan_entry['_id'] }}">
+                            </form>
+                            <button title="Delete" name="{{ weekplan_entry['_id'] }}"><i
+                                    class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="meal-card">
+                        <strong>No meal planned</strong>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% endfor %}
+            </div>
+
+        </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}
+{% block extra_js %}
+<script>
+    document.querySelectorAll('.edit-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target');
+            const dropdown = document.getElementById(targetId);
+            dropdown.style.display = (dropdown.style.display === 'none' || dropdown.style.display === '') ? 'block' : 'none';
+        });
+    });
+</script>
+
+
+{% endblock %}

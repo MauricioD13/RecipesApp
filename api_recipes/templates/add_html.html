@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Create a Recipe for User</h1>
+
+        <form id="recipe-form">
+            <div class="form-group">
+                <label for="user_id">User ID:</label>
+                <input type="number" id="user_id" name="user_id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Recipe Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Recipe Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Create Recipe</button>
+        </form>
+
+        <div id="response-message" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        document.getElementById('recipe-form').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Get form data
+            const userId = document.getElementById('user_id').value;
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+
+            // Construct the recipe data
+            const recipeData = {
+                title: title,
+                description: description
+            };
+
+            // Send data to the FastAPI endpoint
+            try {
+                const response = await fetch(`/users/${userId}/recipes/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(recipeData)
+                });
+
+                const responseMessage = document.getElementById('response-message');
+
+                if (response.ok) {
+                    const responseData = await response.json();
+                    responseMessage.textContent = `Recipe created successfully! Title: ${responseData.title}`;
+                    responseMessage.style.color = 'green';
+                } else {
+                    const errorData = await response.json();
+                    responseMessage.textContent = errorData.detail || 'Error creating recipe';
+                    responseMessage.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response-message').textContent = 'Error submitting form';
+                document.getElementById('response-message').style.color = 'red';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Users active
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Users List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Is Active</th>
+                <th>Recipes</th>
+                <th>Actions</th> <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ 'Yes' if user.is_active else 'No' }}</td>
+                <td>
+                    {% if user.recipes %}
+                    <ul>
+                        {% for recipe in user.recipes %}
+                        <li>
+                            <strong>Id:</strong> {{ recipe.id }} <br>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    No Recipes
+                    {% endif %}
+                </td>
+                <td>
+                    <!-- Button to open the recipe creation modal -->
+                    <button onclick="openRecipeModal('{{ user.id }}', '{{ user.email }}')">Create Recipe</button>
+                    <a href="/users/{{ user.id }}"><button type="button">User recipes</button></a>
+                </td>
+
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Recipe creation modal -->
+<div id="recipe-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeRecipeModal()">&times;</span>
+        <h2>Create Recipe for User: <span id="modal-user-email"></span></h2>
+        <form id="recipe-form">
+            <input type="hidden" id="modal-user-id">
+            <div class="form-group">
+                <label for="ingredients">Ingredients:</label>
+                <textarea id="ingredients" name="ingredients" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="steps">Steps:</label>
+                <textarea id="steps" name="steps" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration (in minutes):</label>
+                <input type="number" id="duration" name="duration" required>
+            </div>
+            <button type="submit">Submit Recipe</button>
+        </form>
+        <div id="response-message" style="margin-top: 20px;"></div>
+    </div>
+</div>
+
+<script>
+    // Open the modal and populate the user details
+    function openRecipeModal(userId, userEmail) {
+        document.getElementById('modal-user-id').value = userId;
+        document.getElementById('modal-user-email').textContent = userEmail;
+        document.getElementById('recipe-modal').style.display = 'block';
+    }
+
+    // Close the modal
+    function closeRecipeModal() {
+        document.getElementById('recipe-modal').style.display = 'none';
+        document.getElementById('response-message').textContent = '';
+    }
+
+    // Handle the form submission for recipe creation
+    document.getElementById('recipe-form').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const userId = document.getElementById('modal-user-id').value;
+        const ingredients = document.getElementById('ingredients').value;
+        const steps = document.getElementById('steps').value;
+        const duration = document.getElementById('duration').value;
+
+        const recipeData = {
+            "ingredients": ingredients,
+            "steps": steps,
+            "duration": parseInt(duration)
+        };
+
+        try {
+            const response = await fetch(`/users/${userId}/recipes/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(recipeData)
+            });
+
+            const responseMessage = document.getElementById('response-message');
+
+            if (response.ok) {
+                const responseData = await response.json();
+                responseMessage.textContent = `Recipe created successfully with ingredients: ${responseData.ingredients}`;
+                responseMessage.style.color = 'green';
+            } else {
+                const errorData = await response.json();
+                responseMessage.textContent = errorData.detail || 'Error creating recipe';
+                responseMessage.style.color = 'red';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('response-message').textContent = 'Error submitting form';
+            document.getElementById('response-message').style.color = 'red';
+        }
+    });
+
+    // Close modal when clicking outside of it
+    window.onclick = function (event) {
+        const modal = document.getElementById('recipe-modal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+</script>
+
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 10px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    #response-message {
+        font-size: 1em;
+        text-align: center;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+/* ---------- base font & background ---------- */
+body { font-family: "Varela Round", sans-serif; background:#fafafa; }
+
+.planner-wrapper {             /* helps centre the white panel */
+  max-width:1000px;
+  margin:1.5rem auto;
+  padding:0 1rem;
+}
+
+/* ---------- white rounded panel ---------- */
+.weekly-planner {
+  background:#fff;
+  border-radius:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  padding:2.25rem 2rem 3rem;
+}
+
+/* ---------- slate-grey ribbon title ---------- */
+.ribbon-wrapper { display:flex; justify-content:center; }
+.ribbon{
+  background:#4d4d4d;
+  color:#fff;
+  padding:.5rem 2.5rem;
+  font-size:2rem;
+  font-weight:600;
+  clip-path:  polygon(0 0,100% 0,95% 100%,5% 100%); /* angled ends */
+}
+
+/* ---------- view-mode links ---------- */
+.view-options{
+  margin:1.4rem 0 0;
+  display:flex; gap:1.4rem; font-weight:600;
+}
+.view-options a{ text-decoration:none; color:#000; }
+.view-options a:hover,
+.view-options a.active{ text-decoration:underline; }
+
+/* ---------- day heading ---------- */
+.day-plan{ margin-top:2.5rem; }
+.day-plan h3{ font-size:1.4rem; margin-bottom:.8rem; }
+
+/* ---------- meals row ---------- */
+.meals{
+  display:  flex; 
+  flex-wrap: nowrap; 
+  gap:  1rem; 
+  align-items:  flex-start;
+  flex-direction: row;
+}
+
+/* each post-it */
+.meal-card{
+  width:200px; background:#fff;
+  border:3px solid #e3d5a4; border-radius:12px;
+  padding:.65rem .8rem; text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  flex-direction: row;
+}
+.meal-card strong{ display:block; margin-bottom:.25rem; }
+.small{ font-size:.85rem; }
+
+/* ---------- edit / delete column ---------- */
+.meal-actions{
+  display:flex; 
+  flex-direction:column; 
+  gap: 1rem;
+}
+.meal-actions button{
+  background:#2d6666; 
+  color:#fff;
+  border:none; 
+  border-radius:6px;
+  padding:.9rem .9rem; 
+  font-size:1rem; 
+  cursor:pointer;
+}
+.meal-actions button:hover{ 
+    opacity:.8; 
+}
+
+/* ---------- responsive tweak ---------- */
+@media(max-width:650px){
+  .meal-card{ width:100%; }
+  .view-options{ flex-wrap:nowrap; }
+}

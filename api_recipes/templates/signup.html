@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <h1>Create a New Account</h1>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="response-message" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Construct the user data
+            const userData = {
+                "email": email,
+                "password": password
+            };
+
+            // Clear any previous messages
+            const responseMessage = document.getElementById('response-message');
+            responseMessage.textContent = '';
+            responseMessage.style.color = 'green'; // Default to success color
+
+            // Send data to the FastAPI endpoint
+            try {
+                const response = await fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    const responseData = await response.json();
+
+                    // Display success message with the user email
+                    responseMessage.textContent = `User created successfully with email: ${responseData.email}`;
+                    responseMessage.style.color = 'green'; // Success color
+                } else {
+                    const errorData = await response.json();
+                    responseMessage.textContent = errorData.detail || 'Error creating user';
+                    responseMessage.style.color = 'red'; // Error color
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                responseMessage.textContent = 'Error submitting form';
+                responseMessage.style.color = 'red'; // Error color
+            }
+        });
+    </script>
+    {% endblock %}
+

@@ -1,0 +1,124 @@
+/* ---------- base font & background ---------- */
+
+.planner-wrapper {             /* helps centre the white panel */
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* ---------- white rounded panel ---------- */
+.weekly-planner {
+  background:#2c3e50;
+  border-radius:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  padding:2.25rem 2rem 3rem;
+}
+
+/* ---------- slate-grey ribbon title ---------- */
+.ribbon-wrapper { display:flex; justify-content:center; }
+.ribbon{
+  background:#4d4d4d;
+  color:#fff;
+  padding:.5rem 2.5rem;
+  font-size:2rem;
+  font-weight:600;
+  clip-path:  polygon(0 0,100% 0,95% 100%,5% 100%); /* angled ends */
+}
+
+/* ---------- view-mode links ---------- */
+.view-options{
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+.view-options a{ 
+  color: #ccc;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold; 
+}
+.view-options a:hover,
+.view-options a.active{ 
+  color: #f3c674;
+  border-bottom: 2px solid #f3c674;
+  padding-bottom: 0.2rem;
+}
+
+/* ---------- day heading ---------- */
+.day-plan{   background: #0f141a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);}
+.day-plan h2{ 
+  color: #f3c674;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+.day-plan h3{ 
+  color: #f3c674;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+/* ---------- meals row ---------- */
+.meals{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+/* each post-it */
+.meal-card{
+  background: #161b22;
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+.meal-card:hover{
+  transform: scale(1.02);
+}
+.meal-card h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e6edf3;
+}
+.meal-card p {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 1rem;
+  color: #c9d1d9;
+}
+.meal-card strong{ display:block; margin-bottom:.25rem; }
+.small{     
+  font-size: 0.85rem;
+  color: #8b949e; 
+}
+
+/* ---------- edit / delete column ---------- */
+.meal-actions{
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: flex;
+  gap: 0.4rem;
+}
+.meal-actions button{
+  background: none;
+  border: none;
+  color: #f3c674;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.meal-actions button:hover{ 
+    opacity:.7; 
+}
+
+/* ---------- responsive tweak ---------- */
+@media(max-width:650px){
+  .meal-card{ width:100%; }
+  .view-options{ flex-wrap:nowrap; }
+}

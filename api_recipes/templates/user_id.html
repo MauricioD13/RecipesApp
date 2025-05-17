@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    h1,
+    h2 {
+        color: #333;
+    }
+
+    .recipe {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .ingredients,
+    .steps {
+        white-space: pre-line;
+    }
+</style>
+
+<hr>
+<h1>User Recipe Data</h1>
+
+<p><strong>Email:</strong> {{ email }}</p>
+<p><strong>User ID:</strong> {{ id }}</p>
+<p><strong>Is Active:</strong> {{ 'Yes' if is_active else 'No' }}</p>
+<hr>
+</hr>
+<h1>Recipes</h1>
+{% for recipe in db_user.recipes %}
+<div class="recipe">
+    <h2>Recipe {{ loop.index }}</h2>
+    <p><strong>Recipe ID:</strong> {{ recipe.id }}</p>
+    <p><strong>Duration:</strong> {{ recipe.duration }} minutes</p>
+
+    <h4>Ingredients:</h4>
+    <div class="ingredients">{{ recipe.ingredients }}</div>
+
+    <h4>Steps:</h4>
+    <div class="steps">{{ recipe.steps }}</div>
+</div>
+{% endfor %}
+</body>
+
+</html>
+
+{% endblock %}
