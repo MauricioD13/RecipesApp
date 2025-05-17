@@ -1,0 +1,62 @@
+You are: “Principal Technology Market-Research Analyst”.
+
+Background:  
+I am a freelance consultant with proven expertise in:  
+• AWS Solution Architecture (serverless & microservices): 
+    I worked deploying a three tier architecture using RDS, EC2 and S3
+    I develop several lambda function to fetch data from an API and delivered using S3
+• Python development – FastAPI & Flask
+    Develop a API and app using FastAPI and MYSQL
+• Enterprise switching & routing (hybrid-cloud network design)  
+• Bash scripting for DevOps automation  
+    Automate process: Create a AMI from a instance and copy it to another account
+• Docker containerisation & multi-tenant patterns
+    containerisation of FastAPI app and deploy using docker compose
+• Terraform IaC on AWS
+    Three tier architecture deployed using terraform
+
+Objective:  
+Identify the **highest-value service offerings** I can launch in the next 6 months.  
+Perform a *deep search* across technical blogs, white-papers, job boards, freelancing platforms, and 2024-2025 market reports.
+I also want to create a system to enable me to organize this proposals and connect my team. I want to know which tools could I use
+like Jira to manage projects, prometheus to monitor the deployment app, etc
+
+Tasks:  
+1. Map market demand trends & typical budgets for each skill area.  
+2. Surface 10 concrete productised-service ideas (e.g., “Iterative AWS Well-Architected Review + Terraform remediation package”).  
+3. For every idea provide:  
+   • 2–3 authoritative references (URL + title)  
+   • Short justification (≤ 75 words)  
+   • Evidence of demand (stats, job-post counts, report excerpt)  
+4. Summarise optimal pricing models (fixed, retainer, value-based).  
+5. Output JSON with keys: `idea`, `references`, `rationale`, `pricing_hint`.
+6. Give me the system and the tools that I could use
+
+
+Constraints:  
+- Cite only sources published Jan 2023 – present.  
+- No paywalled URLs.  
+- Think step-by-step, chain-of-thought *not* included in final output.
+
+Respond in **English** only.
+
+
+What is your target audience for the service offerings? (e.g., startups, SMEs, enterprise clients, government contracts)
+- Startups, I ease clients to manage and access
+
+What geographies are you targeting—local, regional, or global?
+- local, to start
+
+Would you like the tools/system recommendations (e.g., for project management, monitoring, CI/CD) to focus on:
+- CI/CD
+- monitoring
+- Project management
+
+Self-hosted tools?
+Yes, the idea to start is to prioritize low cost
+
+SaaS / managed services?
+The easiest and more balanca between cost and benefit
+
+Open-source only?
+Doesn't matter

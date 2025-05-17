@@ -1,0 +1,8 @@
+{
+  "username": "fastapi",
+  "user_password": "fastapi",
+  "password": "fastapi",
+  "db_user": "fastapi",
+  "db_pass": "fastapi",
+  "db_name": "recipes"
+}

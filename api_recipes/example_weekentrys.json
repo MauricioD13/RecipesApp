@@ -1,0 +1,164 @@
+{
+  "Monday": [
+    {
+      "_id": 1,
+      "meal": "Lunch",
+      "day": "Monday",
+      "recipe_id": 1,
+      "recipe_name": "Pasta",
+      "recipe_entry": {
+        "_id": 1,
+        "user_id": 1,
+        "name": "Pasta",
+        "description": "Delicious pasta with tomato sauce",
+        "ingredients": ["pasta", "tomato sauce", "cheese"],
+        "instructions": ["Boil pasta", "Add sauce", "Serve with cheese"],
+        "image_url": "http://example.com/pasta.jpg",
+        "preparation_time": 30,
+        "portions": 4,
+        "tags": ["Italian", "Main Course"]
+      }
+    },
+    {
+      "_id": 2,
+      "meal": "Dinner",
+      "day": "Monday",
+      "recipe_id": 2,
+      "recipe_name": "Salad",
+      "recipe_entry": {
+        "_id": 2,
+        "user_id": 1,
+        "name": "Salad",
+        "description": "Fresh salad with vegetables",
+        "ingredients": ["lettuce", "tomato", "cucumber"],
+        "instructions": ["Chop vegetables", "Mix together", "Serve"],
+        "image_url": "http://example.com/salad.jpg",
+        "preparation_time": 15,
+        "portions": 2,
+        "tags": ["Healthy", "Appetizer"]
+      }
+    },
+    {
+      "_id": 4,
+      "meal": "Breakfast",
+      "day": "Monday",
+      "recipe_id": 1,
+      "recipe_name": "Pasta",
+      "recipe_entry": {
+        "_id": 1,
+        "user_id": 1,
+        "name": "Pasta",
+        "description": "Delicious pasta with tomato sauce",
+        "ingredients": ["pasta", "tomato sauce", "cheese"],
+        "instructions": ["Boil pasta", "Add sauce", "Serve with cheese"],
+        "image_url": "http://example.com/pasta.jpg",
+        "preparation_time": 30,
+        "portions": 4,
+        "tags": ["Italian", "Main Course"]
+      }
+    }
+  ],
+  "Tuesday": [
+    {
+      "_id": 3,
+      "meal": "Breakfast",
+      "day": "Tuesday",
+      "recipe_id": 3,
+      "recipe_name": "Pizza",
+      "recipe_entry": {
+        "_id": 3,
+        "user_id": 1,
+        "name": "Pizza",
+        "description": "Cheesy pizza with pepperoni",
+        "ingredients": ["dough", "cheese", "pepperoni"],
+        "instructions": ["Prepare dough", "Add toppings", "Bake"],
+        "image_url": "http://example.com/pizza.jpg",
+        "preparation_time": 45,
+        "portions": 4,
+        "tags": ["Italian", "Main Course"]
+      }
+    },
+    {
+      "_id": 5,
+      "meal": "Dinner",
+      "day": "Tuesday",
+      "recipe_id": 2,
+      "recipe_name": "Salad",
+      "recipe_entry": {
+        "_id": 2,
+        "user_id": 1,
+        "name": "Salad",
+        "description": "Fresh salad with vegetables",
+        "ingredients": ["lettuce", "tomato", "cucumber"],
+        "instructions": ["Chop vegetables", "Mix together", "Serve"],
+        "image_url": "http://example.com/salad.jpg",
+        "preparation_time": 15,
+        "portions": 2,
+        "tags": ["Healthy", "Appetizer"]
+      }
+    }
+  ],
+  "Wednesday": [
+    {
+      "_id": 6,
+      "meal": "Breakfast",
+      "day": "Wednesday",
+      "recipe_id": 3,
+      "recipe_name": "Pizza",
+      "recipe_entry": {
+        "_id": 3,
+        "user_id": 1,
+        "name": "Pizza",
+        "description": "Cheesy pizza with pepperoni",
+        "ingredients": ["dough", "cheese", "pepperoni"],
+        "instructions": ["Prepare dough", "Add toppings", "Bake"],
+        "image_url": "http://example.com/pizza.jpg",
+        "preparation_time": 45,
+        "portions": 4,
+        "tags": ["Italian", "Main Course"]
+      }
+    },
+    {
+      "_id": 7,
+      "meal": "Lunch",
+      "day": "Wednesday",
+      "recipe_id": 1,
+      "recipe_name": "Pasta",
+      "recipe_entry": {
+        "_id": 1,
+        "user_id": 1,
+        "name": "Pasta",
+        "description": "Delicious pasta with tomato sauce",
+        "ingredients": ["pasta", "tomato sauce", "cheese"],
+        "instructions": ["Boil pasta", "Add sauce", "Serve with cheese"],
+        "image_url": "http://example.com/pasta.jpg",
+        "preparation_time": 30,
+        "portions": 4,
+        "tags": ["Italian", "Main Course"]
+      }
+    },
+    {
+      "_id": 8,
+      "meal": "Dinner",
+      "day": "Wednesday",
+      "recipe_id": 2,
+      "recipe_name": "Salad",
+      "recipe_entry": {
+        "_id": 2,
+        "user_id": 1,
+        "name": "Salad",
+        "description": "Fresh salad with vegetables",
+        "ingredients": ["lettuce", "tomato", "cucumber"],
+        "instructions": ["Chop vegetables", "Mix together", "Serve"],
+        "image_url": "http://example.com/salad.jpg",
+        "preparation_time": 15,
+        "portions": 2,
+        "tags": ["Healthy", "Appetizer"]
+      }
+    }
+  ],
+  "Thursday": [""],
+  "Friday": [""],
+  "Saturday": [""],
+  "Sunday": [""]
+}
